@@ -649,16 +649,18 @@ def training_loop(
         cluster=tpu_cluster_resolver,
         tpu_config=tf.contrib.tpu.TPUConfig(iterations_per_loop=256))
 
-    ws = tf.estimator.WarmStartSettings(
-             ckpt_to_initialize_from="gs://tpu-mamm/warmstart",
-             vars_to_warm_start=[".*"])
+# Uncomment for warmstarting from checkpoint
+#     ws = tf.estimator.WarmStartSettings(
+#              ckpt_to_initialize_from="gs://tpu-mamm/warmstart",
+#              vars_to_warm_start=[".*"])
 
     estimator = tf.contrib.tpu.TPUEstimator(
         config=run_config,
         use_tpu=use_tpu,
         model_fn=model_fn,
         train_batch_size=batch_size,
-        warm_start_from=ws)
+#         warm_start_from=ws
+    )
     print('Training...')
     estimator.train(input_fn, steps=training_steps)
     import pdb; pdb.set_trace()
