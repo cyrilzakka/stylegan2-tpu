@@ -506,8 +506,10 @@ def create_from_images(tfrecord_dir, image_dir, shuffle, res_log2=7, resize=None
     print(f"detected {len(image_filenames)} images ...")
     if len(image_filenames) == 0:
         error('No input images found')
-
-    img = np.asarray(PIL.Image.open(image_filenames[0]).convert('RGB').resize((resize, resize), PIL.Image.ANTIALIAS))
+    if resize == None:
+        img = np.asarray(PIL.Image.open(image_filenames[0]).convert('RGB'))
+    else:
+        img = np.asarray(PIL.Image.open(image_filenames[0]).convert('RGB').resize((resize, resize), PIL.Image.ANTIALIAS))
     resolution = img.shape[0]
     channels = img.shape[2] if img.ndim == 3 else 1
     if img.shape[1] != resolution:
@@ -523,7 +525,10 @@ def create_from_images(tfrecord_dir, image_dir, shuffle, res_log2=7, resize=None
         for idx in range(order.size):
             if idx % 10000 == 0:
                 print ("added images", idx)
-            img = np.asarray(PIL.Image.open(image_filenames[order[idx]]).convert('RGB').resize((resize, resize), PIL.Image.ANTIALIAS))
+            if resize == None:
+                img = np.asarray(PIL.Image.open(image_filenames[order[idx]]).convert('RGB'))
+            else:
+                img = np.asarray(PIL.Image.open(image_filenames[order[idx]]).convert('RGB').resize((resize, resize), PIL.Image.ANTIALIAS))
             if channels == 1:
                 img = img[np.newaxis, :, :] # HW => CHW
             else:
