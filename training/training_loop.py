@@ -652,7 +652,7 @@ def training_loop(
 # Uncomment for warmstarting from checkpoint
 #     ws = tf.estimator.WarmStartSettings(
 #              ckpt_to_initialize_from="gs://tpu-mamm/warmstart",
-#              vars_to_warm_start=[".*"])
+#              vars_to_warm_start=".*")
 
     estimator = tf.contrib.tpu.TPUEstimator(
         config=run_config,
