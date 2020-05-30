@@ -265,7 +265,7 @@ def G_mapping(
     mapping_fmaps           = 512,          # Number of activations in the mapping layers.
     mapping_lrmul           = 0.01,         # Learning rate multiplier for the mapping layers.
     mapping_nonlinearity    = 'lrelu',      # Activation function: 'relu', 'lrelu', etc.
-    normalize_latents       = False,        # Normalize latent vectors (Z) before feeding them to the mapping layers?
+    normalize_latents       = True,        # Normalize latent vectors (Z) before feeding them to the mapping layers?
     dtype                   = 'float32',    # Data type to use for activations and outputs.
     **_kwargs):                             # Ignore unrecognized keyword args.
 
