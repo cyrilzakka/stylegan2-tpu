@@ -29,6 +29,8 @@ with tqdm(total=max_images) as pbar:
         for file in files:
             filepath = subdir + os.sep + file
             if filepath.endswith(".jpeg") and added != max_images:
+                if filepath.startswith("._"):
+                    continue
                 im = Image.open(filepath).convert('RGB')
                 random_crop(im, 512, 4, file)
                 added += 1
