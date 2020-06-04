@@ -16,7 +16,7 @@ def random_crop(image, target, samples, file):
     for i in range(samples):
         x1 = randrange(0, x - target)
         y1 = randrange(0, y - target)
-        image.crop((x1, y1, x1 + target, y1 + target)).save(target_directory + str(i) + file)
+        image.crop((x1, y1, x1 + target, y1 + target)).save(target_directory + "/" + str(i) + file)
 
 
 directory = args.input
