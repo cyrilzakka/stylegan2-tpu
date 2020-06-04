@@ -28,6 +28,8 @@ with tqdm(total=filescount) as pbar:
         for file in files:
             filepath = subdir + os.sep + file
             if filepath.endswith(".jpeg"):
+                if "._" in filepath:
+                    continue
                 im = Image.open(filepath).convert('RGB')
                 img = flipImage(im)
                 img.save(target_directory + '/' + file)
