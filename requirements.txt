@@ -20,7 +20,7 @@ MarkupSafe==1.1.1
 mock==2.0.0
 numpy==1.16.2
 pbr==5.1.2
-Pillow==5.4.1
+Pillow==8.1.1
 protobuf==3.6.1
 requests==2.21.0
 six==1.12.0
